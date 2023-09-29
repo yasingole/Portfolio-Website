@@ -1,8 +1,45 @@
-name: "Front End"
+name: "Deploy Frontend to S3 and Cloudfront Cache Invalidation"
 
 on:
   push:
     branches:
     - master
     paths:
-    - 
+    - Portfolio_website/src/**
+  pull_request:
+    branches:
+    - master
+    paths: 
+    - Portfolio_website/src/**
+
+jobs:
+  deploy_and_invalidate_cf_cache:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up AWS CLI
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-west-2
+    
+    - name: Upload src to S3
+      run: |
+        aws s3 cp Portfolio_website/src/ s3://www.yasingole.co.uk/ --recursive
+      
+    - name: Get CloudFront Distribution ID
+      id: cloudfront
+      run: |
+        cloudfrontDomain="<your-cloudfront-domain>"
+        cloudfrontId=$(aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='$cloudfrontDomain'].Id" --output text)
+        echo "::set-output name=distribution_id::$cloudfrontId" 
+
+    - name: Create CloudFront Invalidation
+      run: |
+        distributionId="${{ steps.cloudfront.outputs.distribution_id }}"
+          aws configure set preview.cloudfront true
+          aws cloudfront create-invalidation --distribution-id $distributionId --paths '/*'
