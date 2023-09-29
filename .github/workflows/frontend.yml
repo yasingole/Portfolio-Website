@@ -1,0 +1,8 @@
+name: "Front End"
+
+on:
+  push:
+    branches:
+    - master
+    paths:
+    - 
