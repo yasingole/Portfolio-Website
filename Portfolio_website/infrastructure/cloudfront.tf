@@ -74,6 +74,6 @@ resource "aws_cloudfront_distribution" "web_distribution" {
   depends_on = [ aws_acm_certificate.certificate, aws_route53_record.certificate_validation ]
 }
 
-output "cloudfront_distro_id" {
+output "cloudfront_distribution_id" {
   value = aws_cloudfront_distribution.web_distribution.id
 }
