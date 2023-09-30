@@ -48,8 +48,8 @@ jobs:
         id: get_cloudfront_id
         run: |
           cloudfrontDomain="www.yasingole.co.uk"  # Replace with your CloudFront domain
-          cloudfrontId=$(aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='$cloudfrontDomain'].Id" --output text)
-          echo "::set-output name=cloudfront_id::$cloudfrontId"
+          cloudfrontId=$(aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='$cloudfrontDomain'].Id" --output text)
+          echo "cloudfront_id=${cloudfrontId}" >> $GITHUB_STATE
 
       - name: Set Backend Deployment Status
         id: backend_status
