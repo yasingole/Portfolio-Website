@@ -53,4 +53,4 @@ jobs:
 
       - name: Set Backend Deployment Status
         id: backend_status
-        run: echo "Backend Deployment Status: success"
+        run: echo "Backend Deployment Status:success"
