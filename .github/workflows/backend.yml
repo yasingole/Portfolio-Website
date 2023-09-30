@@ -54,7 +54,3 @@ jobs:
       - name: Set Backend Deployment Status
         id: backend_status
         run: echo "Backend Deployment Status: success"
-
-# Define an output for the CloudFront Distribution ID
-outputs:
-  cloudfront_id: ${{ steps.get_cloudfront_id.outputs.cloudfront_id }}
