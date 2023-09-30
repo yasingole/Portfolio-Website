@@ -7,10 +7,12 @@ variable "aws_region" {
 # Domain Name
 variable "domain_name" {
   type = string
+  default = "yasingole.co.uk"
 }
 
 # Bucket Name
 variable "bucket_name" {
   type = string
+  default = "yasingole.co.uk"
 }
 
