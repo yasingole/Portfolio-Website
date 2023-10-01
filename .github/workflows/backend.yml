@@ -44,13 +44,19 @@ jobs:
         run: terraform apply --auto-approve
         working-directory: Portfolio_website/infrastructure/
 
-      - name: Retrieve CloudFront Distribution ID
-        id: get_cloudfront_id
+      - name: Conditional Terraform Destroy
+        id: conditional_destroy
         run: |
-          cloudfrontDomain="yasingole.co.uk"
-          cloudfrontId=$(aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='$cloudfrontDomain'].Id" --output text)
-          echo "CLOUDFRONT_DISTRIBUTION_ID=${cloudfrontId}" >> $GITHUB_ENV
-       
+          if [[ ${{ steps.apply.outcome }} == "failure" ]]; then
+            terraform destroy --auto-approve
+          fi
+        working-directory: Portfolio_website/infrastructure/
+
       - name: Set Backend Deployment Status
         id: backend_status
-        run: echo "Backend Deployment Status:success"
+        run: |
+          if [[ ${{ steps.apply.outcome }} == "success" ]]; then
+            echo "Backend Deployment Status: success"
+          else
+            echo "Backend Deployment Status: failure"
+          fi

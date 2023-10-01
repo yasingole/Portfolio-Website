@@ -18,7 +18,7 @@ on:
       - Portfolio_website/src/**
 
 jobs:
-  deploy_and_invalidate_cf_cache:
+  update_s3_and_invalidate_cf_cache:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,20 +38,3 @@ jobs:
         run: |
           aws s3 cp Portfolio_website/src/ s3://www.yasingole.co.uk/ --recursive
 
-      - name: Get CloudFront Distribution ID
-        id: cloudfront
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        run: |
-          DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[?Origins.Items[?DomainName=='www.yasingole.co.uk.s3-website.eu-west-2.amazonaws.com']].Id" --output text)
-          echo "::set-output name=distribution_id::$DISTRIBUTION_ID"
-
-      - name: Debug CloudFront Distribution ID
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        run: echo "CLOUDFRONT_DISTRIBUTION_ID=${{ env.CLOUDFRONT_DISTRIBUTION_ID }}"
-
-      - name: Create CloudFront Invalidation
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        run: |
-          distributionId="${{ env.CLOUDFRONT_DISTRIBUTION_ID }}"
-          aws configure set preview.cloudfront true
-          aws cloudfront create-invalidation --distribution-id $distributionId --paths '/*'
