@@ -49,11 +49,15 @@ jobs:
 
       - name: Get CloudFront Distribution ID
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        id: cloudfront
         run: |
           cloudfrontDomain="yasingole.co.uk"
           cloudfrontId=$(aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='$cloudfrontDomain'].Id" --output text)
-          echo "::set-output name=distribution_id::$cloudfrontId"
+          echo "distribution_id=${cloudfrontId}" >> $GITHUB_ENV
+
+      - name: Debug CloudFront Distribution ID
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        run: echo "CLOUDFRONT_DISTRIBUTION_ID=${{ env.CLOUDFRONT_DISTRIBUTION_ID }}"
+
 
       - name: Create CloudFront Invalidation
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
