@@ -44,7 +44,7 @@ jobs:
         run: terraform apply --auto-approve
         working-directory: Portfolio_website/infrastructure/
 
-     - name: Retrieve CloudFront Distribution ID
+      - name: Retrieve CloudFront Distribution ID
         id: get_cloudfront_id
         run: |
           cloudfrontDomain="yasingole.co.uk"
