@@ -47,7 +47,7 @@ jobs:
       - name: Get CloudFront Distribution ID
         id: get_cloudfront_id
         run: |
-          cloudfrontDomain="www.yasingole.co.uk"  # Replace with your CloudFront domain
+          cloudfrontDomain="yasingole.co.uk"  # Replace with your CloudFront domain
           cloudfrontId=$(aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='$cloudfrontDomain'].Id" --output text)
           echo "cloudfront_id=${cloudfrontId}" >> $GITHUB_STATE
 
