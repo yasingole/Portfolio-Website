@@ -44,13 +44,13 @@ jobs:
         run: terraform apply --auto-approve
         working-directory: Portfolio_website/infrastructure/
 
-      - name: Get CloudFront Distribution ID
+     - name: Retrieve CloudFront Distribution ID
         id: get_cloudfront_id
         run: |
-          cloudfrontDomain="yasingole.co.uk"  
+          cloudfrontDomain="yasingole.co.uk"
           cloudfrontId=$(aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='$cloudfrontDomain'].Id" --output text)
-          echo "distribution_id=${cloudfrontId}" >> $GITHUB_STATE
-      
+          echo "CLOUDFRONT_DISTRIBUTION_ID=${cloudfrontId}" >> $GITHUB_ENV
+       
       - name: Set Backend Deployment Status
         id: backend_status
         run: echo "Backend Deployment Status:success"

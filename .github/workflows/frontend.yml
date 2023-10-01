@@ -22,18 +22,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check Backend Deployment Status
-        id: check_backend
-        run: echo "Backend Deployment Completed"
-
-      - name: Set CloudFront Distribution ID
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        run: echo "CLOUDFRONT_DISTRIBUTION_ID=${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" >> $GITHUB_ENV
-
-      - name: Checkout code
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        uses: actions/checkout@v2
-
       - name: Set up AWS CLI
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         uses: aws-actions/configure-aws-credentials@v1
@@ -52,16 +40,19 @@ jobs:
         run: |
           cloudfrontDomain="yasingole.co.uk"
           cloudfrontId=$(aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='$cloudfrontDomain'].Id" --output text)
-          echo "distribution_id=${cloudfrontId}" >> $GITHUB_ENV
+          echo "CLOUDFRONT_DISTRIBUTION_ID=${cloudfrontId}" >> $GITHUB_ENV
+      
+      - name: Checkout code
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        uses: actions/checkout@v2
 
       - name: Debug CloudFront Distribution ID
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: echo "CLOUDFRONT_DISTRIBUTION_ID=${{ env.CLOUDFRONT_DISTRIBUTION_ID }}"
 
-
-      - name: Create CloudFront Invalidation
+       - name: Create CloudFront Invalidation
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: |
-          distributionId="${{ steps.cloudfront.outputs.distribution_id }}"
+          distributionId="${{ env.CLOUDFRONT_DISTRIBUTION_ID }}"
           aws configure set preview.cloudfront true
           aws cloudfront create-invalidation --distribution-id $distributionId --paths '/*'
