@@ -51,7 +51,7 @@ jobs:
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         id: cloudfront
         run: |
-          cloudfrontDomain="www.yasingole.co.uk"
+          cloudfrontDomain="yasingole.co.uk"
           cloudfrontId=$(aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='$cloudfrontDomain'].Id" --output text)
           echo "::set-output name=distribution_id::$cloudfrontId"
 
