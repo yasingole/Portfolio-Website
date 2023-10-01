@@ -50,7 +50,7 @@ jobs:
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: echo "CLOUDFRONT_DISTRIBUTION_ID=${{ env.CLOUDFRONT_DISTRIBUTION_ID }}"
 
-       - name: Create CloudFront Invalidation
+      - name: Create CloudFront Invalidation
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: |
           distributionId="${{ env.CLOUDFRONT_DISTRIBUTION_ID }}"
