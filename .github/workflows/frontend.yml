@@ -22,6 +22,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      
       - name: Set up AWS CLI
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         uses: aws-actions/configure-aws-credentials@v1
@@ -36,15 +39,11 @@ jobs:
           aws s3 cp Portfolio_website/src/ s3://www.yasingole.co.uk/ --recursive
 
       - name: Get CloudFront Distribution ID
+        id: cloudfront
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: |
-          cloudfrontDomain="yasingole.co.uk"
-          cloudfrontId=$(aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='$cloudfrontDomain'].Id" --output text)
-          echo "CLOUDFRONT_DISTRIBUTION_ID=${cloudfrontId}" >> $GITHUB_ENV
-      
-      - name: Checkout code
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        uses: actions/checkout@v2
+          DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[?Origins.Items[?DomainName=='yasingole.co.uk']].Id" --output text)
+          echo "::set-output name=distribution_id::$DISTRIBUTION_ID"
 
       - name: Debug CloudFront Distribution ID
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
