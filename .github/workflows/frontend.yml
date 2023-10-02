@@ -29,13 +29,14 @@ jobs:
       - name: Check Backend Status
         id: backend_status
         run: |
-          # Check if the backend workflow succeeded in the last run
-          backend_status=$(curl -s -X GET "https://api.github.com/repos/${{ github.repository }}/actions/workflows/Backend%20Infrastructure%20Deployment/runs?event=workflow_run&status=success" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq '.workflow_runs[0].conclusion')
-          if [[ $backend_status == "null" ]]; then
-            echo "Backend is not present or hasn't run successfully."
+          # Check if the backend is present by making an HTTP request to your domain
+          response_code=$(curl -s -o /dev/null -w "%{http_code}" https://yasingole.co.uk)
+          if [[ $response_code != "200" ]]; then
+            echo "Backend is not present or the domain is not accessible."
           else
-            echo "Backend was successfully deployed."
+            echo "Backend is present and accessible."
           fi
+
 
       - name: Conditional Message
         if: ${{ steps.backend_status.outcome == 'failure' }}
