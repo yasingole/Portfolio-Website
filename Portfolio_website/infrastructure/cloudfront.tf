@@ -45,7 +45,7 @@ resource "aws_cloudfront_distribution" "web_distribution" {
   enabled             = true
   is_ipv6_enabled     = true
   comment             = var.domain_name
-  default_root_object = "index.html"
+  default_root_object = "app.js"
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]

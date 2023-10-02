@@ -1,71 +1,211 @@
-# [Start Bootstrap - Resume](https://startbootstrap.com/template-overviews/resume/)
+# Reactfolio V1.2 👩🏽‍🚀
 
-[Resume](https://startbootstrap.com/template-overviews/resume/) is a resume and CV theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/). This theme features a fixed sidebar with content sections to build a simple, yet elegant resume.
+Reactfolio is a modern and customizable personal portfolio web template built using the popular React library. It provides an easy way for developers, designers, and creatives to showcase their work, skills, and achievements in a professiona and visually appealing way. With its responsive design and clean code, Reactfolio can be easily tailored to suit individual needs and preferences, making it an ideal choice for anyone looking to create a stunning online portfolio.
 
-## Preview
+<center>
+<img src="https://i.imgur.com/ZWPO61A.jpeg" alt="Reactfolio" />
+</center>
 
-[![Resume Preview](https://startbootstrap.com/assets/img/templates/resume.jpg)](https://blackrockdigital.github.io/startbootstrap-resume/)
+Live demo here: <a href="https://reactfolio.tharindu.dev/" target="_blank">reactfolio.tharindu.dev</a>
+<br/>
+Readme here: <a href="https://tharindu.dev/portfolio/reactfolio/" target="_blank">tharindu.dev/portfolio/reactfolio/</a>
 
-**[View Live Preview](https://blackrockdigital.github.io/startbootstrap-resume/)**
+-   [Features](#-features)
+-   [Getting started](#-getting-started)
+-   [Installation and Setup Instructions](#-installation-and-setup-instructions)
+-   [Folder structure](#-folder-structure)
+-   [Configurations](#-configurations)
+-   [Google Analytics](#-google-analytics)
+-   [Building the React App](#-building-the-react-app)
+-   [FAQ](#-faq)
+-   [Contribution](#-contribution)
 
-## Status
+## 📙 Features
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-resume/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/startbootstrap-resume.svg)](https://www.npmjs.com/package/startbootstrap-resume)
-[![Build Status](https://travis-ci.org/BlackrockDigital/startbootstrap-resume.svg?branch=master)](https://travis-ci.org/BlackrockDigital/startbootstrap-resume)
-[![dependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-resume/status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-resume)
-[![devDependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-resume/dev-status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-resume?type=dev)
+-   📖 Multi-Page Layout
+    -   Home
+    -   About
+    -   Projects
+    -   Articles
+    -   Contact
+-   📱 Fully Responsive
+-   🛠 Easy configurations
 
-## Download and Installation
+## 📚 Getting started
 
-To begin using this template, choose one of the following options to get started:
-* [Download the latest release on Start Bootstrap](https://startbootstrap.com/template-overviews/resume/)
-* Install via npm: `npm i startbootstrap-resume`
-* Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-resume.git`
-* [Fork, Clone, or Download on GitHub](https://github.com/BlackrockDigital/startbootstrap-resume)
+Clone down this repository. You will need `NodeJS` and `git` installed globally on your machine.
 
-## Usage
+## 🛠 Installation and Setup Instructions
 
-### Basic Usage
+1. Installation: `npm install`
 
-After downloading, simply edit the HTML and CSS files included with the template in your favorite text editor to make changes. These are the only files you need to worry about, you can ignore everything else! To preview the changes you make to the code, you can open the `index.html` file in your web browser.
+2. Run the project: `npm start`
 
-### Advanced Usage
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The page will reload if you make edits.
 
-After installation, run `npm install` and then run `gulp dev` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `gulpfile.js` to see which tasks are included with the dev environment.
+## 📁 Folder structure
 
-#### Gulp Tasks
+-   `/public`: publicly accessible contents (ex: images, media).
+-   `/src`: all the components used in this project.
+    -   `/src/components/`: each reusable components of each pages.
+    -   `/src/data`: configurations of the web app.
+    -   `/src/pages`: pages that include in the web app.
 
-- `gulp` the default task that builds everything
-- `gulp dev` browserSync opens the project in your default browser and live reloads when changes are made
-- `gulp sass` compiles SCSS files into CSS
-- `gulp minify-css` minifies the compiled CSS file
-- `gulp minify-js` minifies the themes JS file
-- `gulp copy` copies dependencies from node_modules to the vendor directory
+## ⚙️ Configurations
 
-## Bugs and Issues
+Since this is a public and open source project, you can make any changes to it. If you are a ReactJS developer you can do it easily. But if you are a beginner, I have extracted the configurable data into a single directory, so you can edit the files in that directory to configure the entire web application.
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-resume/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/resume/).
+Directory: `/src/data/`
 
-## Custom Builds
+-   `user.js`
 
-You can hire Start Bootstrap to create a custom build of any template, or create something from scratch using Bootstrap. For more information, visit the **[custom design services page](https://startbootstrap.com/bootstrap-design-services/)**.
+    From this you can change the content of each page of the web application.
 
-## About
+-   `articles.js`
 
-Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
+    From this you can add your articles to the web application.
 
-* https://startbootstrap.com
-* https://twitter.com/SBootstrap
+    Instructions:
 
-Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
+    -   Add new article
 
-* http://davidmiller.io
-* https://twitter.com/davidmillerskt
-* https://github.com/davidtmiller
+        1. Create a new function starts with `article_`. For example you can add new function named `article_3`.
 
-Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+        2. Then add the data accordingly.
 
-## Copyright and License
+            - Add `<React.Fragment>` tag and it's closing tags in body.
+            - In React there has no keyword `class`, so you should use `className` to define html classes.
 
-Copyright 2013-2017 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-resume/blob/gh-pages/LICENSE) license.
+            ```js
+            function article_3() {
+            	return {
+            		date: "7 May 2023",
+            		title: "The Benefits of Cloud Computing",
+            		description: "Why businesses are turning to the cloud.",
+            		style: `
+            				.random-image {
+            					align-self: center;
+            					outline: 2px solid red;
+            				}
+            				`,
+            		body: (
+            			<React.Fragment>
+            				<div className="article-content">
+            					<div className="paragraph">
+            						Content of article 1
+            					</div>
+            					<img
+            						src="https://picsum.photos/200/300"
+            						alt="random"
+            						className="random-image"
+            					/>
+            				</div>
+            			</React.Fragment>
+            		),
+            	};
+            }
+            ```
+
+        3. In the last lines you will see an array to which you need to add your new `articles` function.
+
+            ```js
+            const myArticles = [article_1, article_2, article_3];
+            ```
+
+-   `seo.js`
+
+    The SEO.js file is a module that contains an array of objects, with each object representing metadata for a specific page of a React website. The purpose of this file is to centralize and manage the SEO (Search Engine Optimization) information for different pages.
+
+    Each object in the SEO array has the following properties:
+
+    `page`: Represents the page name or identifier. It helps in mapping the SEO data to the appropriate page.
+
+    `title`: Specifies the title of the page. This title is typically displayed in the browser's title bar and is an important element for search engines.
+
+    `description`: Provides a concise and informative description of the page content. This description is often displayed in search engine results and can greatly influence click-through rates.
+    keywords: Contains an array of keywords relevant to the page's content. Keywords can help search engines understand the topics covered on the page and can impact its visibility in search results.
+    By storing the SEO information in the SEO.js file, you can easily manage and update the metadata for different pages of your React website. This approach allows you to keep the SEO data separate from the components and reuse it across the application, ensuring consistent and optimized metadata for each page.
+
+    Example:
+
+    ```js
+    const SEO = [
+    	{
+    		page: "home",
+    		description:
+    			"I am a backend developer with expertise in Node.js. I have experience in building scalable, secure and reliable web applications using various frameworks and technologies.",
+    		keywords: ["Tharindu", "Tharindu N", "Tharindu Nayanajith"],
+    	},
+    ];
+    ```
+
+-   `styles.css`
+
+    From this you can change the font colors and font families of the web application.
+
+    ```css
+    :root {
+    	/* ------- colors ------- */
+    	--primary-color: #27272a;
+    	--secondary-color: #65656d;
+    	--tertiary-color: #acacb4;
+    	--quaternary-color: #e4e4e7;
+    	--link-color: #14b8a6;
+    	/* ---------------------- */
+
+    	/* ------- fonts ------- */
+    	--primary-font: "Heebo", sans-serif;
+    	--secondary-font: "Roboto", sans-serif;
+    	/* --------------------- */
+    }
+    ```
+
+## 📈 Google Analytics
+
+Add your Google Analytics 4 MEASUREMENT ID to `/src/data/tracking.js`.
+
+How to find the Google Analytics 4 MEASUREMENT ID ?
+
+[https://support.google.com/analytics/answer/9539598?hl=en](https://support.google.com/analytics/answer/9539598?hl=en)
+
+## 🚀 Building the React App
+
+To build the React app, you can use the `npm run build` command. This will create a production-ready build of your app in the `build/` directory.
+
+Here are the steps to follow:
+
+1. Open a terminal window and navigate to the root directory of your React app.
+2. Run the `npm run build` command to create a production build of your app. This will generate a static bundle of your app in the `build/` directory.
+3. Copy the contents of the `build/` directory to your server's public directory. You can do this using an FTP client or by running a command like `scp` to transfer the files to your server. Make sure to replace `example.com` and `/var/www/html` with your server's domain name and public directory, respectively:
+
+    ```bash
+    scp -r build/* user@example.com:/var/www/html
+    ```
+
+4. Your portfolio app should now be accessible from your server's domain name. You can verify this by opening a web browser and navigating to http://example.com (replace example.com with your server's domain name).
+
+That's it! Your React portfolio app should now be up and running on your server. Note that you may need to configure your server's web server (e.g., Apache or Nginx) to serve the index.html file in the build/ directory as the default page for your domain.
+
+## 🤔 FAQ
+
+**Q1. Subpages can only be accessed through links on the homepage or navigation bar, but those pages are not accessible through direct links.**
+
+If you are using Apache as your web server, you can insert this into your .htaccess file:
+
+```c
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteRule . /index.html [L]
+</IfModule>
+```
+
+## 🌱 Contribution
+
+If you have any suggestions on what to improve in Reactfolio and would like to share them, feel free to leave an issue or fork project to implement your own ideas

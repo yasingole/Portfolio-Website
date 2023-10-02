@@ -19,11 +19,11 @@ resource "aws_s3_bucket_website_configuration" "web_bucket_config" {
   bucket = aws_s3_bucket.web_bucket.id
 
   index_document {
-    suffix = "index.html"
+    suffix = "app.js"
   }
   
   error_document {
-    key = "index.html"
+    key = "app.js"
   }
 }
 
