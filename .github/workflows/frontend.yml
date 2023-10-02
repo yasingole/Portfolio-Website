@@ -24,7 +24,7 @@ jobs:
 
       - name: Upload src to S3
         run: |
-          aws s3 cp Portfolio_website/src/ s3://www.yasingole.co.uk/ --recursive
+          aws s3 sync Portfolio_website/src/ s3://www.yasingole.co.uk/
 
       - name: Check Backend Status
         id: backend_status
