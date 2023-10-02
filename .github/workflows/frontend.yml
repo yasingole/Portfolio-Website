@@ -24,7 +24,7 @@ jobs:
 
       - name: Upload src to S3
         run: |
-          aws s3 sync Portfolio_website/src/ s3://www.yasingole.co.uk/
+          aws s3 sync Portfolio_website/src/build s3://www.yasingole.co.uk/
 
       - name: TEST_Check_Backend_Status
         id: backend_status
