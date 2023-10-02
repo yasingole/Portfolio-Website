@@ -26,7 +26,7 @@ jobs:
         run: |
           aws s3 sync Portfolio_website/src/ s3://www.yasingole.co.uk/
 
-      - name: Check Backend Status
+      - name: TEST_Check_Backend_Status
         id: backend_status
         run: |
           # Check if the backend is present by making an HTTP request to your domain
@@ -36,9 +36,3 @@ jobs:
           else
             echo "Backend is present and accessible."
           fi
-
-
-      - name: Conditional Message
-        if: ${{ steps.backend_status.outcome == 'failure' }}
-        run: |
-          echo "Unable to upload and invalidate cache as backend is not present."
