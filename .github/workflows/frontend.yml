@@ -1,32 +1,21 @@
 name: Deploy Frontend to S3 and Cloudfront Cache Invalidation
 
 on:
-  workflow_run:
-    workflows: ["Backend Infrastructure Deployment"]
-    types:
-      - completed
-
   push:
-    branches:
-      - master
-    paths:
-      - Portfolio_website/src/**
-  pull_request:
     branches:
       - master
     paths:
       - Portfolio_website/src/**
 
 jobs:
-  update_s3_and_invalidate_cf_cache:
+  frontend_deployment:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      
-      - name: Set up AWS CLI
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+      - name: Set up AWS CLI for Frontend
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -34,7 +23,21 @@ jobs:
           aws-region: eu-west-2
 
       - name: Upload src to S3
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: |
           aws s3 cp Portfolio_website/src/ s3://www.yasingole.co.uk/ --recursive
 
+      - name: Check Backend Status
+        id: backend_status
+        run: |
+          # Check if the backend workflow succeeded in the last run
+          backend_status=$(curl -s -X GET "https://api.github.com/repos/${{ github.repository }}/actions/workflows/Backend%20Infrastructure%20Deployment/runs?event=workflow_run&status=success" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq '.workflow_runs[0].conclusion')
+          if [[ $backend_status == "null" ]]; then
+            echo "Backend is not present or hasn't run successfully."
+          else
+            echo "Backend was successfully deployed."
+          fi
+
+      - name: Conditional Message
+        if: ${{ steps.backend_status.outcome == 'failure' }}
+        run: |
+          echo "Unable to upload and invalidate cache as backend is not present."
