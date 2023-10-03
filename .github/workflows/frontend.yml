@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - Portfolio_website/src/**
+      - Portfolio_website/**
 
 jobs:
   frontend_deployment:
