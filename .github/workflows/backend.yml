@@ -5,12 +5,12 @@ on:
     branches:
     - master
     paths:
-    - Portfolio_website/infrastructure/**
+    - Portfolio_website/**
   pull_request:
     branches:
     - master
     paths: 
-    - Portfolio_website/infrastructure/**
+    - Portfolio_website/**
 
 env:  
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}  
