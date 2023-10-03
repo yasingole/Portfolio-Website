@@ -27,5 +27,5 @@ provider "aws" {
 
 /*
 The second AWS provider is specifically for the SSL certificate. These need to be created in us-east-1 
-for Cloudfront to be able to use 
+for Cloudfront to be able to use them
 */
