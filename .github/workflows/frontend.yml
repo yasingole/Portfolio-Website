@@ -24,7 +24,7 @@ jobs:
 
       - name: Upload src to S3
         run: |
-          aws s3 sync Portfolio_website/src/ s3://www.yasingole.co.uk/ --delete --recursive
+          aws s3 sync Portfolio_website/src/ s3://www.yasingole.co.uk/ --delete 
 
 
       - name: TEST_Check_Backend_Status
