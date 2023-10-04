@@ -1,7 +1,7 @@
 # Create DynamoDB table
 resource "aws_dynamodb_table" "cloud_resume_stats" {
   name         = "cloud-resume-stats"
-  billing_mode = "DYNAMIC_PRICING"
+  billing_mode = "PAY_PER_REQUEST"
   hash_key     = "stats"
 
   attribute {
