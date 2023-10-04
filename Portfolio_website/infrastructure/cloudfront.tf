@@ -45,7 +45,7 @@ resource "aws_cloudfront_distribution" "web_distribution" {
   enabled             = true
   is_ipv6_enabled     = true
   comment             = var.domain_name
-  default_root_object = "/index.html"
+  default_root_object = "index.html"
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -54,6 +54,13 @@ resource "aws_cloudfront_distribution" "web_distribution" {
     cache_policy_id = aws_cloudfront_cache_policy.cache_policy.id
 
     viewer_protocol_policy = "redirect-to-https"
+  }
+
+  custom_error_response {
+    error_code             = 404
+    response_code          = 200  # Redirect status code (OK)
+    response_page_path     = "/index.html"  # Path to your index.html
+    error_caching_min_ttl = 0
   }
 
   price_class = "PriceClass_All"
