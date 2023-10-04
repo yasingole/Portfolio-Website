@@ -58,9 +58,9 @@ resource "aws_lambda_function" "increment_visitor_count_lambda" {
   filename         = data.archive_file.increment_visitor_count_lambda_zip.output_path
   function_name    = "IncrementVisitorCount"
   role             = aws_iam_role.increment_visitor_count_role.arn
-  handler          = "index.handler"
+  handler          = "visitor_count.lambda_handler" 
   source_code_hash = data.archive_file.increment_visitor_count_lambda_zip.output_base64sha256
-  runtime          = "nodejs14.x"
+  runtime          = "python3.8"
 
   environment {
     variables = {
