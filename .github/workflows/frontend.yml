@@ -34,6 +34,6 @@ jobs:
           fi
 
       - name: Upload src to S3
-        if: steps.backend_status.outputs.backend_status == 'Backend is present and accessible.'
+        if: success()
         run: |
           aws s3 sync Portfolio_website/src/ s3://www.yasingole.co.uk/ --delete
