@@ -22,11 +22,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
 
-      - name: Upload src to S3
-        run: |
-          aws s3 sync Portfolio_website/src/ s3://www.yasingole.co.uk/ --delete 
-
-
       - name: TEST_Check_Backend_Status
         id: backend_status
         run: |
@@ -37,3 +32,8 @@ jobs:
           else
             echo "Backend is present and accessible."
           fi
+
+      - name: Upload src to S3
+        if: steps.backend_status.outputs.backend_status == 'Backend is present and accessible.'
+        run: |
+          aws s3 sync Portfolio_website/src/ s3://www.yasingole.co.uk/ --delete
