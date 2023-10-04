@@ -23,7 +23,7 @@ resource "aws_s3_bucket_website_configuration" "web_bucket_config" {
   }
   
   error_document {
-    key = "index.html"
+    key = "404.html"
   }
 }
 
