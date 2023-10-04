@@ -57,7 +57,7 @@ resource "aws_cloudfront_distribution" "web_distribution" {
   }
 
   custom_error_response {
-    error_code             = 404
+    error_code             = "*"
     response_code          = 200  # Redirect status code (OK)
     response_page_path     = "index.html"  # Path to your index.html
     error_caching_min_ttl = 0
