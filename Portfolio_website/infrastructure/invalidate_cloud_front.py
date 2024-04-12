@@ -22,3 +22,4 @@ def handle_s3_change(event, context):
     
     print("Invalidating the entire CloudFront cache")
     return batch
+# ignpre
