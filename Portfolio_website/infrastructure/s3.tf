@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "web_bucket" {
   force_destroy = true
 }
 
-# Block all public access
+# Blocks all public access
 resource "aws_s3_bucket_public_access_block" "s3public" {
   bucket = aws_s3_bucket.web_bucket.id
 
